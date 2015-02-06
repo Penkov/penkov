@@ -1,0 +1,28 @@
+using System;
+
+class BitExchange 
+{
+    static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        int p = int.Parse(Console.ReadLine());
+        int q = int.Parse(Console.ReadLine());
+        int k = int.Parse(Console.ReadLine());
+
+        for (int i = p; i <= p+k-1; i++)
+        {
+                int mask = 1;
+
+                int bitP = (n & (mask << i))>>i;
+                int bitQ = (n & (mask << q))>>q;
+        
+                n = n & ~(mask << i);
+                n = n & ~(mask << q);
+                n = n | (bitP << q);
+                n = n | (bitQ << i);
+                q++;
+        }
+        Console.WriteLine(n);
+    }
+}
+
